@@ -89,7 +89,7 @@ Xskillent/
 
 🛠️ Setup Instructions
 Clone this repo:
-git clone https://github.com/Xskillent.git
+git clone https://github.com/SGP-Project---3.git
 
 Open in Android Studio
 
