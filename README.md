@@ -89,7 +89,7 @@ Xskillent/
 
 🛠️ Setup Instructions
 Clone this repo:
-git clone https://github.com/<your-team>/Xskillent.git
+git clone https://github.com/Xskillent.git
 
 Open in Android Studio
 
