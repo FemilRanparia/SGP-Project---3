@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SGPProject3">
         <activity
+            android:name=".Role"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
             android:name=".SignUp"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
