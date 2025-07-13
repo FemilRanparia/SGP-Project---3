@@ -8,16 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class SignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        val signup_redirect = findViewById<Button>(R.id.signup_redirect)
+        setContentView(R.layout.activity_sign_up)
+        val login_redirect = findViewById<Button>(R.id.login_redirect)
 
-        signup_redirect.setOnClickListener {
-            val intent = Intent(this, SignUp::class.java)
-            startActivity(intent)
+        login_redirect.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
