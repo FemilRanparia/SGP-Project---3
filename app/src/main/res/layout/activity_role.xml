@@ -28,20 +28,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:fontFamily="@font/baloo_tamma_2_medium"
-        android:text="Please Select Your Journey"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/baloo_tamma_2_medium"
+            android:text="Please Select Your Journey"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/continue_as_learner"
             android:layout_width="292dp"
             android:layout_height="55dp"
             android:layout_marginTop="64dp"
@@ -59,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/continue_as_sharer"
             android:layout_width="292dp"
             android:layout_height="55dp"
             android:layout_marginTop="100dp"
@@ -71,19 +70,20 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintEnd_toEndOf="@+id/continue_as_learner"
+            app:layout_constraintStart_toStartOf="@+id/continue_as_learner"
+            app:layout_constraintTop_toBottomOf="@+id/continue_as_learner" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="273dp"
-            android:layout_height="279dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="238dp"
+            android:layout_height="176dp"
+            android:layout_marginTop="48dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.543"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/newlogo" />
+            app:srcCompat="@drawable/newlogo1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
