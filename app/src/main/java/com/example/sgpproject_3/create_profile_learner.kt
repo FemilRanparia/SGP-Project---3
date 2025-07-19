@@ -1,9 +1,11 @@
 package com.example.sgpproject_3
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +18,12 @@ class create_profile_learner : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_create_profile_learner)
+
+        val home_feed_redirect_btn = findViewById<Button>(R.id.create_profile_final)
+        home_feed_redirect_btn.setOnClickListener {
+            val home_feed_redirect_intent = Intent(this, Home::class.java)
+            startActivity(home_feed_redirect_intent)
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
