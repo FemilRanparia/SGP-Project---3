@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             val password_login = password_login.text.toString()
             when{
                 input_name.isEmpty() -> {
-                    showAlertDialog("Username Required", "Please Enter Your username before login.")
+                    showAlertDialog("Email Required", "Please Enter Your email before login.")
                 }
                 password_login.isEmpty() -> {
                     showAlertDialog("Password Required", "Please Enter Your Password before login.")

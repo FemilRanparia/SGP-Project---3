@@ -1,12 +1,176 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFE0B2">
+    tools:context=".ChatListActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Toolbar Section -->
+
+    <!-- First Chat Item -->
+
+    <!-- Second Chat Item -->
+
+    <!-- Third Chat Item -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#3C5EEF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Chats"
+            android:textColor="@android:color/white"
+            android:textSize="23sp" />
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:contentDescription="Search"
+            android:padding="16dp"
+            android:src="@drawable/ic_search"
+            android:tint="@android:color/white" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/static_chat_item_container_2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Connect Fragment"
-        android:textSize="24sp"
-        android:layout_gravity="center" />
-</FrameLayout>
+        android:layout_marginTop="64dp"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/chat_profile_1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Profile picture"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_name_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Hitarth Shukla(Sharer)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/timestamp_2"
+            app:layout_constraintStart_toEndOf="@id/chat_profile_1"
+            app:layout_constraintTop_toTopOf="@id/chat_profile_1" />
+
+        <TextView
+            android:id="@+id/last_message_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Perfect, let's schedule for Sunday! (Static)"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/chat_profile_1"
+            app:layout_constraintEnd_toStartOf="@+id/unread_count_badge_2"
+            app:layout_constraintStart_toEndOf="@id/chat_profile_1"
+            app:layout_constraintTop_toBottomOf="@id/user_name_2" />
+
+        <TextView
+            android:id="@+id/timestamp_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8:54 PM"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_name_2" />
+
+        <TextView
+            android:id="@+id/unread_count_badge_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text="2"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/last_message_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timestamp_2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/static_chat_item_container_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar">
+
+        <ImageView
+            android:id="@+id/profile_picture_3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Profile picture"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_name_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Hiren Solanki(Sharer)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/timestamp_3"
+            app:layout_constraintStart_toEndOf="@id/profile_picture_3"
+            app:layout_constraintTop_toTopOf="@id/profile_picture_3" />
+
+        <TextView
+            android:id="@+id/last_message_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Perfect, let's schedule for Friday! (Static)"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/profile_picture_3"
+            app:layout_constraintStart_toEndOf="@id/profile_picture_3"
+            app:layout_constraintTop_toBottomOf="@id/user_name_3" />
+
+        <TextView
+            android:id="@+id/timestamp_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9:32 PM"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_name_3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
