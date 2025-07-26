@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SGPProject3">
         <activity
+            android:name=".ChatActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".Home"
             android:exported="false" />
         <activity

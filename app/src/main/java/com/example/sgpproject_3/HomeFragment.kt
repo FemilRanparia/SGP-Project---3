@@ -20,14 +20,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val notificationIcon = view.findViewById<ImageView>(R.id.notificationIcon)
-
+        val profileIcon = view.findViewById<ImageView>(R.id.profileIcon)
         notificationIcon.setOnClickListener {
-            // Load notifications fragment in inner container
             parentFragmentManager.beginTransaction()
                 .replace(R.id.home_inner_fragment_container, NotificationsFragment())
                 .addToBackStack(null)
                 .commit()
         }
+        profileIcon.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.home_inner_fragment_container, ProfileFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 }
-

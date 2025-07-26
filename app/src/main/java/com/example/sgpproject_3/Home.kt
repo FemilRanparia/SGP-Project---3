@@ -20,7 +20,7 @@ class Home : AppCompatActivity() {
                 R.id.nav_home -> HomeFragment()
                 R.id.nav_search -> SearchFragment()
                 R.id.nav_connect -> ConnectFragment()
-                R.id.nav_profile -> ProfileFragment()
+                R.id.nav_course -> CourseFragment()
                 else -> null
             }
 

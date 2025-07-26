@@ -10,59 +10,58 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        auth = FirebaseAuth.getInstance()
+
         val signup_redirect = findViewById<Button>(R.id.signup_redirect)
-        val input_name_login = findViewById<EditText>(R.id.input_name_login)
+        val input_email_login = findViewById<EditText>(R.id.input_name_login)
         val password_login = findViewById<EditText>(R.id.password_login)
         val login = findViewById<Button>(R.id.login)
 
         login.setOnClickListener {
-            Toast.makeText(this, "You have logged in", Toast.LENGTH_SHORT).show()
-            val role_redirect = Intent(this, Role::class.java)
-            val input_name = input_name_login.text.toString().trim()
-            val password_login = password_login.text.toString()
-            when{
-                input_name.isEmpty() -> {
-                    showAlertDialog("Email Required", "Please Enter Your email before login.")
-                }
-                password_login.isEmpty() -> {
-                    showAlertDialog("Password Required", "Please Enter Your Password before login.")
-                }
-                input_name.length>15 -> {
-                    showAlertDialog("Username too long", "Name should not excced 15 characters")
-                }
-                password_login.length < 6 -> {
-                    showAlertDialog("Password too short", "Please enter minimum 6 digit password")
-                }
-                input_name.contains(" ") -> {
-                    showAlertDialog("Invalid Username", "Username cannot contain spaces")
-                }
-                password_login.contains(" ") -> {
-                    showAlertDialog("Invalid Password", "Password should not contain spaces")
-                }
-                !input_name.matches(Regex("^[A-Za-z]{1,15}$")) -> {
-                    showAlertDialog(
-                        "Invalid Characters",
-                        "Username must only contain letters no digits or special characters"
-                    )
-                }
+            val email = input_email_login.text.toString().trim()
+            val password = password_login.text.toString().trim()
+
+            when {
+                email.isEmpty() -> showAlertDialog("Email Required", "Please enter your email.")
+                password.isEmpty() -> showAlertDialog("Password Required", "Please enter your password.")
+                password.length < 6 -> showAlertDialog("Weak Password", "Password must be at least 6 characters.")
                 else -> {
-                    role_redirect.putExtra("username", input_name)
-                    startActivity(role_redirect)
-                    finish()
+                    auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val user = auth.currentUser
+                                if (user != null && user.isEmailVerified) {
+                                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                                    val roleRedirectIntent = Intent(this, Role::class.java)
+                                    roleRedirectIntent.putExtra("username", email)
+                                    startActivity(roleRedirectIntent)
+                                    finish()
+                                } else {
+                                    auth.signOut()
+                                    showAlertDialog("Email Not Verified", "Please verify your email before logging in.")
+                                }
+                            } else {
+                                showAlertDialog("Login Failed", "Invalid email or password.")
+                            }
+                        }
                 }
             }
-
         }
 
         signup_redirect.setOnClickListener {
-            val sign_re_intent = Intent(this, SignUp::class.java)
-            startActivity(sign_re_intent)
+            val signUpIntent = Intent(this, SignUp::class.java)
+            startActivity(signUpIntent)
             finish()
         }
 
@@ -72,10 +71,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
-    private fun showAlertDialog(title: String, message: String){
-        AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton("OK"){
-                dialog, _ ->dialog.dismiss()
-        }
-            .setCancelable(false).show()
+
+    private fun showAlertDialog(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .setCancelable(false)
+            .show()
     }
 }

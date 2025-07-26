@@ -32,6 +32,14 @@
             android:layout_marginRight="24dp"
             android:src="@drawable/ic_notifications"
             android:contentDescription="Notifications"/>
+
+        <ImageView
+            android:id="@+id/profileIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/ic_profile"
+            android:contentDescription="Profile"/>
     </LinearLayout>
 
     <FrameLayout

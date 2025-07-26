@@ -3,6 +3,7 @@ package com.example.sgpproject_3
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,62 +11,85 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
 class SignUp : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_sign_up)
-        val login_redirect = findViewById<Button>(R.id.login_redirect)
+
+        auth = FirebaseAuth.getInstance()
+
+        val loginRedirect = findViewById<Button>(R.id.login_redirect)
         val signup = findViewById<Button>(R.id.signup)
-        val input_name_signup = findViewById<EditText>(R.id.input_name_sign_up)
+        val emailInput = findViewById<EditText>(R.id.input_email_sign_up)
+        val passwordInput = findViewById<EditText>(R.id.password_signup)
 
         signup.setOnClickListener {
-            val input_name = input_name_signup.text.toString().trim()
+            val email = emailInput.text.toString().trim()
+            val password = passwordInput.text.toString().trim()
+
             when {
-                input_name.isEmpty() -> {
-                    showAlertDialog("Username Required", "Please Enter Your username before login.")
+                email.isEmpty() || password.isEmpty() -> {
+                    showAlertDialog("Missing Fields", "Please enter both email and password.")
                 }
-
-                input_name.length > 15 -> {
-                    showAlertDialog("Username too long", "Name should not excced 15 characters")
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    showAlertDialog("Invalid Email", "Please enter a valid email address.")
                 }
-
-                input_name.contains(" ") -> {
-                    showAlertDialog("Invalid Username", "Username cannot contain spaces")
+                password.length < 6 -> {
+                    showAlertDialog("Weak Password", "Password must be at least 6 characters long.")
                 }
-
-                !input_name.matches(Regex("^[A-Za-z]{1,15}$")) -> {
-                    showAlertDialog(
-                        "Invalid Characters",
-                        "Username must only contain letters no digits or special characters"
-                    )
-                }
-
                 else -> {
-                    Toast.makeText(this, "Your Account Created Successfully!", Toast.LENGTH_SHORT)
-                        .show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    signup.isEnabled = false
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            signup.isEnabled = true
+                            if (task.isSuccessful) {
+                                auth.currentUser?.sendEmailVerification()
+                                    ?.addOnCompleteListener { verificationTask ->
+                                        if (verificationTask.isSuccessful) {
+                                            showAlertDialog(
+                                                "Verify Email",
+                                                "Account created! Please check your email and verify before logging in."
+                                            )
+                                        } else {
+                                            showAlertDialog(
+                                                "Verification Failed",
+                                                "Account created, but failed to send verification email."
+                                            )
+                                        }
+                                    }
+                                // Don't redirect yet — wait until email is verified manually
+                            } else {
+                                showAlertDialog("Signup Failed", task.exception?.message ?: "Unknown error")
+                            }
+                        }
                 }
             }
         }
-        
-        login_redirect.setOnClickListener {
+
+        loginRedirect.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-        
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
-    private fun showAlertDialog(title: String, message: String){
-        AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton("OK"){
-                dialog, _ ->dialog.dismiss()
-        }
-            .setCancelable(false).show()
+
+    private fun showAlertDialog(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .setCancelable(false)
+            .show()
     }
 }
