@@ -31,7 +31,6 @@ class create_profile_learner : AppCompatActivity() {
             insets
         }
 
-        // Spinner setup
         val genderSpinner: Spinner = findViewById(R.id.genderSpinner)
         val genderOptions = resources.getStringArray(R.array.gender_options)
 
@@ -48,7 +47,6 @@ class create_profile_learner : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Optional: Handle when nothing is selected
             }
         }
     }

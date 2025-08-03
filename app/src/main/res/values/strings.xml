@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SGP Project - 3</string>
+    <string name="default_web_client_id">211779848327-f98gku6a440i06afkivd6teoqird2e2v.apps.googleusercontent.com</string>
     <string name="image">TODO</string>
     <string-array name="gender_options">
         <item>Select Gender</item>

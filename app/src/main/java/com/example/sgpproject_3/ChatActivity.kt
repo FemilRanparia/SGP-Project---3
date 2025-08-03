@@ -25,7 +25,6 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        // Bind views
         backButton = findViewById(R.id.backButton)
         profileImage = findViewById(R.id.profileImage)
         usernameText = findViewById(R.id.usernameText)
@@ -36,18 +35,14 @@ class ChatActivity : AppCompatActivity() {
         messageInput = findViewById(R.id.messageInput)
         recyclerView = findViewById(R.id.recyclerView)
 
-        // Receive data from ChatListActivity
         val username = intent.getStringExtra("username")
         val profileImageRes = intent.getIntExtra("profileImageRes", R.drawable.sample_profile)
 
-        // Set user info
         usernameText.text = username
         profileImage.setImageResource(profileImageRes)
 
-        // Setup RecyclerView (empty for now)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        // recyclerView.adapter = YourAdapter()
 
         backButton.setOnClickListener { finish() }
 

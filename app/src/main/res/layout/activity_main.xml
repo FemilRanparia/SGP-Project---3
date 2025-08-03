@@ -121,7 +121,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/login_with_google"
             android:layout_width="292dp"
             android:layout_height="48dp"
             android:layout_marginTop="44dp"
@@ -139,10 +139,10 @@
             android:layout_width="38dp"
             android:layout_height="24dp"
             android:layout_marginBottom="12dp"
-            app:layout_constraintBottom_toBottomOf="@+id/button2"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintBottom_toBottomOf="@+id/login_with_google"
+            app:layout_constraintEnd_toEndOf="@+id/login_with_google"
             app:layout_constraintHorizontal_bias="0.066"
-            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/login_with_google"
             app:srcCompat="@drawable/google" />
 
         <TextView
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:text="OR"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/login_with_google"
             app:layout_constraintEnd_toEndOf="@+id/login"
             app:layout_constraintStart_toStartOf="@+id/login"
             app:layout_constraintTop_toBottomOf="@+id/login" />
@@ -164,10 +164,10 @@
             android:fontFamily="@font/baloo_tamma_2_medium"
             android:text="Don't Have an account?"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/login_with_google"
             app:layout_constraintHorizontal_bias="0.517"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintStart_toStartOf="@+id/login_with_google"
+            app:layout_constraintTop_toBottomOf="@+id/login_with_google" />
 
         <Button
             android:id="@+id/signup_redirect"
@@ -181,9 +181,9 @@
             android:textColorLink="@color/white"
             android:textSize="18sp"
             app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/login_with_google"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/login_with_google"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <ImageView
