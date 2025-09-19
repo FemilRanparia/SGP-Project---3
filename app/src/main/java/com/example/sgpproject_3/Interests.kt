@@ -1,5 +1,9 @@
 package com.example.sgpproject_3
 
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import android.widget.Toast
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -29,7 +33,7 @@ class Interests : AppCompatActivity() {
         "Writing" to listOf("Poetry", "Short Stories", "Novels"),
         "Cooking" to listOf("Baking", "Continental", "Indian"),
         "Gaming" to listOf("PC", "Console", "Mobile"),
-        "Dance" to listOf("Hip-hop", "Ballet", "Contemporary"),
+        "Dance" to listOf("Hip-hop", "Ballet", "Contemporary")
     )
 
     private var selectedCategory: String? = null
@@ -41,22 +45,34 @@ class Interests : AppCompatActivity() {
 
         val create_profile_redirect_btn = findViewById<Button>(R.id.create_profile_redirect)
         create_profile_redirect_btn.setOnClickListener {
-            val create_profile_learner_redirect_intent = Intent(this, create_profile_learner::class.java)
-            startActivity(create_profile_learner_redirect_intent)
+            val uid = FirebaseAuth.getInstance().currentUser?.uid
+            if (uid != null) {
+                val db = FirebaseFirestore.getInstance()
+                val userDoc = db.collection("users").document(uid)
+                userDoc.set(mapOf("interests" to selectedOptions.toList()), SetOptions.merge())
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Interests saved!", Toast.LENGTH_SHORT).show()
+                        val createProfileIntent = Intent(this, create_profile_learner::class.java)
+                        startActivity(createProfileIntent)
+                        finish()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error saving interests: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+            }
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         leftPanel = findViewById(R.id.leftPanel)
         rightPanel = findViewById(R.id.rightPanel)
         selectedOptionsLayout = findViewById(R.id.selectedOptionsLayout)
-
         createLeftButtons()
     }
-
     private fun createLeftButtons() {
         leftPanel.removeAllViews()
 

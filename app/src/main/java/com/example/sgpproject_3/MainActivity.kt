@@ -1,5 +1,7 @@
 package com.example.sgpproject_3
 
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -53,16 +55,33 @@ class MainActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val user = auth.currentUser
                             if (user != null && user.isEmailVerified) {
-                                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                                val roleRedirectIntent = Intent(this, Role::class.java)
-                                roleRedirectIntent.putExtra("username", email)
-                                startActivity(roleRedirectIntent)
-                                finish()
+                                val uid = user.uid
+                                val db = FirebaseFirestore.getInstance()
+
+                                db.collection("users").document(uid).get()
+                                    .addOnSuccessListener { document ->
+                                        if (document.exists() && document.contains("role")) {
+                                            // Role already chosen → Go Home
+                                            val homeIntent = Intent(this, Home::class.java)
+                                            homeIntent.putExtra("username", email)
+                                            startActivity(homeIntent)
+                                            finish()
+                                        } else {
+                                            val roleRedirectIntent = Intent(this, Role::class.java)
+                                            roleRedirectIntent.putExtra("username", email)
+                                            startActivity(roleRedirectIntent)
+                                            finish()
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(this, "Error fetching user data", Toast.LENGTH_SHORT).show()
+                                    }
                             } else {
                                 auth.signOut()
                                 showAlertDialog("Email Not Verified", "Please verify your email before logging in.")
                             }
-                        } else {
+                        }
+                        else {
                             showAlertDialog("Login Failed", task.exception?.message ?: "Unknown error")
                         }
                     }
@@ -101,13 +120,27 @@ class MainActivity : AppCompatActivity() {
                         auth.signInWithCredential(credential).addOnCompleteListener { authTask ->
                             if (authTask.isSuccessful) {
                                 val email = auth.currentUser?.email ?: "Unknown"
-                                Log.d("GoogleLogin", "Firebase auth success for $email")
-                                Toast.makeText(this, "Google Sign-In successful!", Toast.LENGTH_SHORT).show()
-                                val roleRedirectIntent = Intent(this, Role::class.java)
-                                roleRedirectIntent.putExtra("username", email)
-                                startActivity(roleRedirectIntent)
-                                finish()
-                            } else {
+                                val uid = auth.currentUser?.uid
+                                val db = FirebaseFirestore.getInstance()
+
+                                if (uid != null) {
+                                    db.collection("users").document(uid).get()
+                                        .addOnSuccessListener { document ->
+                                            if (document.exists() && document.contains("role")) {
+                                                val homeIntent = Intent(this, Home::class.java)
+                                                homeIntent.putExtra("username", email)
+                                                startActivity(homeIntent)
+                                                finish()
+                                            } else {
+                                                val roleRedirectIntent = Intent(this, Role::class.java)
+                                                roleRedirectIntent.putExtra("username", email)
+                                                startActivity(roleRedirectIntent)
+                                                finish()
+                                            }
+                                        }
+                                }
+                            }
+                            else {
                                 Log.e("GoogleLogin", "Firebase auth failed", authTask.exception)
                                 showAlertDialog("Google Login Failed", authTask.exception?.message ?: "Unknown error")
                             }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "211779848327",
+    "project_id": "xskillent",
+    "storage_bucket": "xskillent.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211779848327:android:e65774e39e85b0b9685022",
+        "android_client_info": {
+          "package_name": "com.example.sgpproject_3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211779848327-f98gku6a440i06afkivd6teoqird2e2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sgpproject_3",
+            "certificate_hash": "9ba877d6f634e58a963885d423ecc498e6f172f7"
+          }
+        },
+        {
+          "client_id": "211779848327-rlcjmpmamr8f7k4llddbnhdmudmh4f2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sgpproject_3",
+            "certificate_hash": "12eec2d0acd5edd936448c9200d59959b6d87319"
+          }
+        },
+        {
+          "client_id": "211779848327-vo0ohkbgo0f3op7bsln39poso6d9544u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWjXvS5w4v5uooOfB58ujFKXDfwY1rwm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211779848327-hr1cc1jks7c8htmjofbtcbirhdsg0t6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
