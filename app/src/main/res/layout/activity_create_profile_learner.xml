@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -58,12 +59,12 @@
             android:inputType="text"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.353"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/edit_image"
             android:layout_width="55dp"
             android:layout_height="48dp"
             android:layout_marginTop="100dp"
@@ -91,11 +92,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
+            android:background="@drawable/edit_text"
             android:ems="10"
             android:hint="Enter Last Name"
             android:inputType="text"
             android:minHeight="48dp"
-            android:background="@drawable/edit_text"
             app:layout_constraintEnd_toEndOf="@+id/editTextText3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editTextText3"
@@ -147,11 +148,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
+            android:background="@drawable/edit_text"
             android:ems="10"
             android:hint="Enter Phone Number"
             android:inputType="phone"
             android:minHeight="48dp"
-            android:background="@drawable/edit_text"
             app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
             app:layout_constraintHorizontal_bias="0.422"
             app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
@@ -175,11 +176,11 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
+            android:background="@drawable/edit_text"
             android:ems="10"
             android:hint="Enter City"
             android:inputType="text"
             android:minHeight="48dp"
-            android:background="@drawable/edit_text"
             app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editTextPhone"
@@ -211,8 +212,8 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="376dp"
-            android:layout_height="196dp"
+            android:layout_width="395dp"
+            android:layout_height="180dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
@@ -238,8 +239,15 @@
             android:layout_marginTop="48dp"
             android:layout_marginBottom="32dp"
             android:text="Create Profile"
-            app:layout_constraintTop_toBottomOf="@+id/genderSpinner"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/genderSpinner" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -29,11 +29,8 @@ class ChatActivity : AppCompatActivity() {
         profileImage = findViewById(R.id.profileImage)
         usernameText = findViewById(R.id.usernameText)
         menuButton = findViewById(R.id.menuButton)
-        attachButton = findViewById(R.id.attachButton)
-        micButton = findViewById(R.id.micButton)
         sendButton = findViewById(R.id.sendButton)
         messageInput = findViewById(R.id.messageInput)
-        recyclerView = findViewById(R.id.recyclerView)
 
         val username = intent.getStringExtra("username")
         val profileImageRes = intent.getIntExtra("profileImageRes", R.drawable.sample_profile)

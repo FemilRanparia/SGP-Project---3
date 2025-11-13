@@ -50,5 +50,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("com.google.firebase:firebase-appcheck-playintegrity")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
 }
 apply(plugin = "com.google.gms.google-services")
